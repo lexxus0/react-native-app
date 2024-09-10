@@ -1,19 +1,33 @@
-import { StyleSheet, Text, View } from "react-native";
-import SplashScreen from "./src/screens/SplashScreen";
+import React from "react";
 
-export default function App() {
+import WelcomeScreen from "./src/screens/WelcomeScreen";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import OnBoarding1 from "./src/screens/onboarding/OnBoarding1";
+import OnBoarding2 from "./src/screens/onboarding/OnBoarding2";
+import OnBoarding3 from "./src/screens/onboarding/OnBoarding3";
+import OnBoarding4 from "./src/screens/onboarding/OnBoarding4";
+import SignUpScreen from "./src/screens/auth/SignUpScreen";
+import SignInScreen from "./src/screens/auth/SignInScreen";
+
+const Stack = createStackNavigator();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <SplashScreen />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Home" component={WelcomeScreen} />
+        <Stack.Screen name="OnBoarding1" component={OnBoarding1} />
+        <Stack.Screen name="OnBoarding2" component={OnBoarding2} />
+        <Stack.Screen name="OnBoarding3" component={OnBoarding3} />
+        <Stack.Screen name="OnBoarding4" component={OnBoarding4} />
+        <Stack.Screen name="SignUp" component={SignUpScreen} />
+        <Stack.Screen name="SignIn" component={SignInScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+export default App;
+
+// screenOptions={{ headerShown: false }}
